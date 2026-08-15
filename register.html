@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - YoungBoss Exchange</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <div class="logo-placeholder">
+                    <h1 class="brand-name">YoungBoss Exchange</h1>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div class="form-container">
+                <h2 class="form-title">Create Account</h2>
+                <p class="form-subtitle">Join YoungBoss Exchange today</p>
+
+                <form id="registerForm" class="auth-form">
+                    <!-- Name Field -->
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-input" 
+                            placeholder="Enter your full name"
+                            required
+                        >
+                        <span class="error-message" id="nameError"></span>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="Enter your email address"
+                            required
+                        >
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <!-- Phone Number Field -->
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            class="form-input" 
+                            placeholder="+234 800 000 0000"
+                            pattern="^\+234[0-9]{10}$"
+                            required
+                        >
+                        <span class="helper-text">Must start with +234</span>
+                        <span class="error-message" id="phoneError"></span>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input" 
+                            placeholder="Enter a strong password"
+                            required
+                        >
+                        <span class="error-message" id="passwordError"></span>
+                        
+                        <!-- Password Requirements -->
+                        <div class="password-requirements">
+                            <p class="requirements-title">Password must have:</p>
+                            <div class="requirement-item">
+                                <span class="requirement-icon" id="reqLength">○</span>
+                                <span>At least 8 characters</span>
+                            </div>
+                            <div class="requirement-item">
+                                <span class="requirement-icon" id="reqUppercase">○</span>
+                                <span>At least one uppercase letter (A-Z)</span>
+                            </div>
+                            <div class="requirement-item">
+                                <span class="requirement-icon" id="reqLowercase">○</span>
+                                <span>At least one lowercase letter (a-z)</span>
+                            </div>
+                            <div class="requirement-item">
+                                <span class="requirement-icon" id="reqNumber">○</span>
+                                <span>At least one number (0-9)</span>
+                            </div>
+                            <div class="requirement-item">
+                                <span class="requirement-icon" id="reqSymbol">○</span>
+                                <span>At least one symbol (!@#$%^&*)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            class="form-input" 
+                            placeholder="Confirm your password"
+                            required
+                        >
+                        <span class="error-message" id="confirmPasswordError"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">
+                        Create Account
+                    </button>
+                </form>
+
+                <!-- Login Link -->
+                <div class="auth-footer">
+                    <p class="auth-text">
+                        Already have an account? 
+                        <a href="login.html" class="auth-link">Click login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "youngboss-exchange",
+  "version": "1.0.0",
+  "description": "Professional registration and login system for YoungBoss Exchange",
+  "main": "index.html",
+  "scripts": {
+    "start": "netlify dev",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "netlify deploy --prod"
+  },
+  "keywords": [
+    "authentication",
+    "registration",
+    "login",
+    "dashboard",
+    "netlify"
+  ],
+  "author": "YoungBoss Exchange",
+  "license": "MIT",
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "engines": {
+    "node": "^18.0.0"
+  }
+}

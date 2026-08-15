@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - YoungBoss Exchange</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header/Navigation -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="logo-header">
+                    <h1 class="brand-name-small">YoungBoss Exchange</h1>
+                </div>
+                <div class="header-actions">
+                    <button id="notificationBtn" class="notification-btn">
+                        🔔 Notifications
+                        <span class="notification-badge" id="notificationBadge" style="display: none;">1</span>
+                    </button>
+                    <button id="logoutBtn" class="logout-btn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Content -->
+        <main class="dashboard-main">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-card">
+                    <div class="welcome-icon">👋</div>
+                    <div class="welcome-content">
+                        <h2>Welcome, <span id="userName">User</span>!</h2>
+                        <p class="welcome-subtitle">You're successfully logged into YoungBoss Exchange</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Stats -->
+            <section class="stats-section">
+                <h3 class="section-title">Account Overview</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👤</div>
+                        <div class="stat-info">
+                            <p class="stat-label">Account Status</p>
+                            <p class="stat-value" id="accountStatus">Active</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📧</div>
+                        <div class="stat-info">
+                            <p class="stat-label">Email</p>
+                            <p class="stat-value" id="accountEmail">-</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📱</div>
+                        <div class="stat-info">
+                            <p class="stat-label">Phone</p>
+                            <p class="stat-value" id="accountPhone">-</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <p class="stat-label">Joined Date</p>
+                            <p class="stat-value" id="joinedDate">-</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Account Details -->
+            <section class="account-details-section">
+                <h3 class="section-title">Account Information</h3>
+                <div class="details-card">
+                    <div class="detail-row">
+                        <div class="detail-cell">
+                            <label class="detail-label">Full Name</label>
+                            <p class="detail-value" id="detailName">-</p>
+                        </div>
+                        <div class="detail-cell">
+                            <label class="detail-label">Email Address</label>
+                            <p class="detail-value" id="detailEmail">-</p>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-cell">
+                            <label class="detail-label">Phone Number</label>
+                            <p class="detail-value" id="detailPhone">-</p>
+                        </div>
+                        <div class="detail-cell">
+                            <label class="detail-label">Member Since</label>
+                            <p class="detail-value" id="detailJoined">-</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="actions-section">
+                <h3 class="section-title">Quick Actions</h3>
+                <div class="actions-grid">
+                    <button class="action-btn" id="editProfileBtn">
+                        <span class="action-icon">✏️</span>
+                        <span class="action-text">Edit Profile</span>
+                    </button>
+                    <button class="action-btn" id="changePasswordBtn">
+                        <span class="action-icon">🔐</span>
+                        <span class="action-text">Change Password</span>
+                    </button>
+                    <button class="action-btn" id="settingsBtn">
+                        <span class="action-icon">⚙️</span>
+                        <span class="action-text">Settings</span>
+                    </button>
+                    <button class="action-btn" id="supportBtn">
+                        <span class="action-icon">💬</span>
+                        <span class="action-text">Get Support</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Notification Center Modal -->
+            <div id="notificationModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Login Notifications</h2>
+                        <button class="close-modal" id="closeNotificationModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="notificationsList" class="notifications-list">
+                            <div class="notification-item">
+                                <div class="notification-icon">✓</div>
+                                <div class="notification-text">
+                                    <p class="notification-title">Successful Login</p>
+                                    <p class="notification-time" id="loginTime">Just now</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <p>&copy; 2024 YoungBoss Exchange. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Dashboard initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+        });
+
+        function initializeDashboard() {
+            // Get user data from localStorage
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            
+            if (!userData) {
+                // Redirect to login if no user data
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Populate dashboard with user data
+            document.getElementById('userName').textContent = userData.name;
+            document.getElementById('accountEmail').textContent = userData.email;
+            document.getElementById('accountPhone').textContent = userData.phone;
+            document.getElementById('joinedDate').textContent = new Date(userData.joinedDate).toLocaleDateString();
+            
+            document.getElementById('detailName').textContent = userData.name;
+            document.getElementById('detailEmail').textContent = userData.email;
+            document.getElementById('detailPhone').textContent = userData.phone;
+            document.getElementById('detailJoined').textContent = new Date(userData.joinedDate).toLocaleDateString();
+
+            // Setup logout
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                handleLogout();
+            });
+
+            // Setup notification center
+            document.getElementById('notificationBtn').addEventListener('click', function() {
+                document.getElementById('notificationModal').style.display = 'flex';
+            });
+
+            document.getElementById('closeNotificationModal').addEventListener('click', function() {
+                document.getElementById('notificationModal').style.display = 'none';
+                document.getElementById('notificationBadge').style.display = 'none';
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                const modal = document.getElementById('notificationModal');
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Setup quick action buttons
+            document.getElementById('editProfileBtn').addEventListener('click', function() {
+                alert('Edit Profile feature coming soon!');
+            });
+
+            document.getElementById('changePasswordBtn').addEventListener('click', function() {
+                alert('Change Password feature coming soon!');
+            });
+
+            document.getElementById('settingsBtn').addEventListener('click', function() {
+                alert('Settings page coming soon!');
+            });
+
+            document.getElementById('supportBtn').addEventListener('click', function() {
+                alert('Support contact coming soon!');
+            });
+        }
+
+        function handleLogout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>

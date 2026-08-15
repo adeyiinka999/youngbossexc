@@ -1,0 +1,52 @@
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = "."
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["nodemailer"]
+
+# SPA redirect for client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  condition = "!has(ext)" 
+
+# Prevent redirecting actual files
+[[redirects]]
+  from = "*.css"
+  to = ":splat.css"
+  status = 200
+
+[[redirects]]
+  from = "*.js"
+  to = ":splat.js"
+  status = 200
+
+[[redirects]]
+  from = "*.html"
+  to = ":splat.html"
+  status = 200
+
+# Environment variables for production
+[context.production.environment]
+  NODE_ENV = "production"
+
+# Environment variables for preview
+[context.deploy-preview.environment]
+  NODE_ENV = "development"
+
+# Environment variables for branch deploys
+[context.branch-deploy.environment]
+  NODE_ENV = "development"
+
+# HTTP Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
